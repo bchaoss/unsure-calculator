@@ -3,7 +3,7 @@
 body {
   max-width: 720px;
   margin: 0 auto;
-  padding: 5vw;
+  padding: 16px 5vw 5vw 5vw;
 }
 
 * {
@@ -24,7 +24,6 @@ h1 {
 }
 
 h2 {
-  font-size: 2em;
   margin-top: 2em;
 }
 
@@ -48,4 +47,13 @@ img {
   margin-top: 3em;
   margin-bottom: 10em;
   text-align: right;
+}
+
+.compact-list li {
+  font-size: 1em;
+  margin-bottom: 0.5em;
+}
+
+footer {
+  margin-top: 3.5em;
 }
