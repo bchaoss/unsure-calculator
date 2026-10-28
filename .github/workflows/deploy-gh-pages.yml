@@ -1,0 +1,40 @@
+name: Deploy GitHub Pages
+
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: 2.19.6
+
+      - name: Install Peanut
+        run: dart pub global activate peanut
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Build website
+        run: |
+          cd example
+          dart pub get
+          dart pub global run peanut
+
+      - name: Push gh-pages
+        run: git push origin gh-pages --force
