@@ -55,5 +55,23 @@ img {
 }
 
 footer {
-  margin-top: 3.5em;
+  margin-top: 3.5rem;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+#toggle-instructions {
+  display: none;
+}
+
+.pwa-standalone #instructions {
+  display: none;
+}
+
+.pwa-standalone #toggle-instructions {
+  display: block;
+}
+
+.pwa-standalone footer {
+  display: none;
 }
