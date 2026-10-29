@@ -1,0 +1,72 @@
+<input id="formula-input"
+       aria-label="Formula to compute"
+       type="text"
+       size="16">
+
+<div class="keypad-and-results">
+    <div class="keypad">
+        <table>
+            <tr>
+                <td><button data-action="add" data-value="7">7</button></td>
+                <td><button data-action="add" data-value="8">8</button></td>
+                <td><button data-action="add" data-value="9">9</button></td>
+                <td><button data-action="add" data-value="/" 
+                            aria-label="Divide (/)">/</button></td>
+                <td><button data-action="delete" 
+                            aria-label="Delete">⌫</button></td>
+            </tr>
+            <tr>
+                <td><button data-action="add" data-value="4">4</button></td>
+                <td><button data-action="add" data-value="5">5</button></td>
+                <td><button data-action="add" data-value="6">6</button></td>
+                <td><button data-action="add" data-value="×" 
+                            aria-label="Multiply (×)">×</button></td>
+                <td><button data-action="add" data-value="~" 
+                            aria-label="Range operator (~)">~</button></td>
+            </tr>
+            <tr>
+                <td><button data-action="add" data-value="1">1</button></td>
+                <td><button data-action="add" data-value="2">2</button></td>
+                <td><button data-action="add" data-value="3">3</button></td>
+                <td><button data-action="add" data-value="-" 
+                            aria-label="Subtract (-)">-</button></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><button data-action="add" data-value="0">0</button></td>
+                <td><button data-action="add" data-value=".">.</button></td>
+                <td></td>
+                <td><button data-action="add" data-value="+" 
+                            aria-label="Add (+)">+</button></td>
+                <td><button data-action="calculate">=</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="calculator-output">
+        <img class="loader" src="images/three-dots.svg" hidden>
+
+        <p class="result" hidden></p>
+
+        <p class="note" hidden></p>
+
+        <div class="histogram-section" hidden>
+            <p>
+                <a href="#" data-action="toggle-histogram">
+                    Histogram (<span>show</span>)
+                </a>
+            </p>
+            <pre class="histogram" hidden></pre>
+        </div>
+
+        <div class="percentiles-section" hidden>
+            <p>
+                <a href="#" data-action="toggle-percentiles">
+                    Percentiles (<span>show</span>)
+                </a>
+            </p>
+            <pre class="percentiles" hidden></pre>
+        </div>
+    </div>
+
+</div>

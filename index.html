@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Unsure Calculator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="app_component/app_component.css">
+    <script defer src="main.dart.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="worker.dart.js" as="script">
+
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <meta property="og:title" content="Unsure Calculator">
+    <meta property="og:url" content="https://filiph.github.io/unsure/">
+    <meta property="og:description" content="The Unsure Calculator is an online tool that lets you calculate with numbers you’re not sure about.">
+    <meta property="og:image" content="https://filiph.github.io/unsure/images/screenshot.png">
+
+    <meta name="Description" content="The Unsure Calculator is an online tool that lets you calculate with numbers you’re not sure about.">
+
+  </head>
+  <body>
+    <h1>Unsure Calculator</h1>
+    
+    <div id="unsure-calc">Loading...</div>
+
+    <a href="#" id="toggle-instructions">How to use</a>
+    <div id="instructions">
+    <p>
+      <b>A calculator for numbers with uncertainty.</b> Combine uncertain ranges with standard numbers in your everyday calculations.
+    </p>
+
+    <h2>How to use</h2>
+    <p>
+      Use <code>~</code> to include uncertain ranges in your expressions, like <code>10~20 * 4</code>. Here, <code>10~20</code> represents a 95% interval range under a normal distribution. The <code>~</code> symbol is available on the keypad.
+    </p>
+    <p>
+      You can also use <code>+-</code> to specify a center value and its 95% uncertainty interval, such as <code>100 (+-10)</code> or <code>100 (+-10%)</code>.
+    </p>
+    <p>
+      The calculator returns a range of possible results, also expressed as a 95% interval. Results also display a probability distribution chart and a percentiles table.
+    </p>
+
+    <h2>Examples</h2>
+    <p>
+      Here are some ideas on how to use this calculator 
+      <small style="opacity: 0.65;">(adapted from the <a href="#footnote">original project</a>)</small>:
+    </p>
+
+    <ul class="compact-list">
+      <li>Estimate viability of a business idea, with uncertain size of the market, market share, monthly sales per person, and operational costs: <code>50000~80000 × 0.10~0.20 × 5~10 - 20000~50000</code></li>
+      <li>Estimate future income with uncertain money per month, length of a gig, and tax rate: <code>1000~1500 × 10~12 × (30~50 / 100)</code></li>
+      <li>Estimate yearly time saved by a dishwasher (or any other piece of technology) given uncertain number of times used per week, time saving per use, and installation costs: <code>(4~7 × 10~20 × 51) / 60 - 2~4</code></li>
+      <li>Estimate total return of an investment account. Both the interest rate and length of investing is unsure: <code>5000 × -2~5% × 5~10</code></li>
+      <li>Estimate the probability of dying in a pandemic, given an uncertain morbidity rate (how many people get sick) and mortality rate (how many infected people die): <code>(10~30 / 100) × (0.1~1.0 / 100)</code></li>
+      <li>Estimate the height of a skyscraper, given an uncertain distance from its base, and an uncertain angle in which we see the top of it: <code>90~100 × tan(70~80)</code></li>
+      <li>Estimate return on investment of a marketing campaign, given uncertain views, click through rate, conversion rate, revenue per order, and ad spend: <code>(1M × 2~3% × 3~5% × 10~15 - 2~3K) / 2~3K</code></li>
+    </ul>
+
+    <h2>Functions and limitations</h2>
+    <p>
+      Standard operations (<code>+</code>, <code>-</code>, <code>×</code>, <code>/</code>) and <code>~</code> are built into the keypad.
+      Other <b>functions</b> can also be input with uncertainty, such as <code>sqrt(10~20)</code>, <code>(10~20) ^ 2</code> (or <code>**</code> for exponents), and <code>sin(0~1)</code> (<code>cos</code>, <code>tan</code>).
+    </p>
+    <p>
+      <b>Units</b> of a range are supported: <code>K</code>, <code>M</code>, <code>B</code>, <code>T</code>, and <code>%</code>. For example, <code>4~6K</code> applies thousand to both numbers, meaning 4000~6000.
+    </p>
+    <p>
+      <b>Precedence:</b> The <code>~</code> operator has higher precedence than other operations, if parentheses are omitted.
+    </p>
+    <p>
+      <b>Limitations:</b>
+    </p>
+    <ul>
+      <li>The default range represents a 95% interval under a normal distribution. (<span style="color: gray; font-style: italic;">Support for other uncertainty levels & distributions is planned for the future.</span>)</li>
+      <li>Calculations are using the Monte Carlo simulation, which may take a few seconds to compute.</li>
+    </ul>
+    </div>
+
+    <footer> 
+      <hr>
+      <p id="footnote"> 
+        <i>Based on the original <a href="https://filiph.github.io/unsure/" target="_blank">Unsure</a> project by Filip Hráček.</i> 
+      </p> 
+    </footer>
+
+  </body>
+</html>
