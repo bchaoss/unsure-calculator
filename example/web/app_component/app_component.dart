@@ -54,6 +54,13 @@ class AppComponent {
 
     _formulaInput.value = formulaString;
 
+    _root.on['pointerdown'].listen((event) {
+      final target = event.target;
+      if (target is Element && target.closest('.keypad button') != null) {
+        event.preventDefault();
+      }
+    });
+
     _root.onClick.listen(_handleClick);
     _formulaInput.onKeyUp.listen((event) {
       if (event.keyCode == KeyCode.ENTER) {
@@ -127,6 +134,7 @@ class AppComponent {
     }
 
     _render();
+    _formulaInput.focus();
   }
 
   void _handleClick(MouseEvent event) {
