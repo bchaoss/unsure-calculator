@@ -75,19 +75,47 @@ class AppComponent {
 
   void add(String value) {
     _updateFormulaString();
-    formulaString = '$formulaString$value';
-    _formulaInput.value = formulaString;
+    
+    final start = _formulaInput.selectionStart ?? formulaString.length;
+    formulaString = formulaString.substring(0, start) +
+        value +
+        formulaString.substring(_formulaInput.selectionEnd ?? start);
+    
+    _formulaInput
+      ..value = formulaString
+      ..setSelectionRange(start + value.length, start + value.length);
   }
 
   void delete() {
     _updateFormulaString();
+
     if (formulaString.isEmpty) return;
-    formulaString = formulaString.substring(0, formulaString.length - 1);
-    while (formulaString.endsWith(' ')) {
-      formulaString = formulaString.substring(0, formulaString.length - 1);
+
+    final start = _formulaInput.selectionStart ?? formulaString.length;
+    final end = _formulaInput.selectionEnd ?? start;
+
+    if (start != end) {
+      formulaString =
+          formulaString.substring(0, start) + formulaString.substring(end);
+    } else {
+      if (start == 0) return;
+
+      final deletedAtEnd = start == formulaString.length;
+      formulaString = formulaString.substring(0, start - 1) +
+          formulaString.substring(start);
+
+      if (deletedAtEnd) {
+        while (formulaString.endsWith(' ')) {
+          formulaString = formulaString.substring(0, formulaString.length - 1);
+        }
+      }
     }
 
-    _formulaInput.value = formulaString;
+    final cursorPosition = start == end ? (start == 0 ? 0 : start - 1) : start;
+
+    _formulaInput
+      ..value = formulaString
+      ..setSelectionRange(cursorPosition, cursorPosition);
   }
 
   void startComputation(String formula) {
