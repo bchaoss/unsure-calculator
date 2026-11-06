@@ -28,11 +28,9 @@ Future<int> main(List<String> args) async {
   final parser = FormulaParser();
   final formula = parser.parseString(formulaString);
 
-  // Show a simple result for formulas that include no uncertainty.
   if (!formula.isStochastic) {
     final value = formula.emit();
-    final formatter = Formatter([value, value * 0.95, value * 1.05]);
-    final valueString = formatter.format(value);
+    final valueString = value.toString();
 
     if (argResults['padding']) {
       print('\n\t$valueString\n');
