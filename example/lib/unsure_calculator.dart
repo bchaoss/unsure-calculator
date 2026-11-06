@@ -42,8 +42,7 @@ class UnsureCalculator {
 
     if (!formula.isStochastic) {
       final value = formula.emit();
-      final formatter = Formatter([value, value * 0.95, value * 1.05]);
-      final valueString = formatter.format(value);
+      final valueString = value.toString();
 
       return NonStochasticResultMessage(valueString);
     }
